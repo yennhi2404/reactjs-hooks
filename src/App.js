@@ -9,6 +9,9 @@ import { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import PostFiltersForm from './components/PostFiltersForm';
 import Clock from './components/Clock';
+import BetterClock from './components/BetterClock';
+import MagicBox from './components/MagicBox';
+import Hero from './components/Hero';
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -29,6 +32,11 @@ function App() {
     _limit: 10,
     _page: 1,
   });
+
+  const [count, setCount] = useState(0);
+  const handleHeroClick = () => {
+
+  }
 
   useEffect(() => {
     async function fetchPostList(){
@@ -107,7 +115,13 @@ function App() {
       <PostFiltersForm onSubmit={handleFiltersChange} />
 
       {showClock && <Clock />}
+      <BetterClock />
       <button onClick={() => setShowClock(false)}>Hide clock</button>
+      <MagicBox />
+
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+      <Hero name="Easy frontend" onClick={handleHeroClick}/>
     </div>
   );
 }
